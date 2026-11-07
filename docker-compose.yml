@@ -1,7 +1,7 @@
 services:
   postgres:
     image: pgvector/pgvector:0.8.7-pg17
-    container_name: ford-quality-postgres
+    container_name: quality-copilot-postgres
     restart: unless-stopped
     env_file:
       - .env

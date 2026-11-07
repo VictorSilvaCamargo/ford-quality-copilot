@@ -12,9 +12,9 @@ def _build_conninfo() -> str:
     load_dotenv(override=False)
     host = os.getenv("POSTGRES_HOST", "localhost")
     port = os.getenv("POSTGRES_PORT", "5432")
-    dbname = os.getenv("POSTGRES_DB", "ford_quality")
-    user = os.getenv("POSTGRES_USER", "ford_copilot")
-    password = os.getenv("POSTGRES_PASSWORD", "ford_copilot_local_pw")
+    dbname = os.getenv("POSTGRES_DB", "quality_copilot")
+    user = os.getenv("POSTGRES_USER", "quality_copilot")
+    password = os.getenv("POSTGRES_PASSWORD", "quality_copilot_local_pw")
     return f"host={host} port={port} dbname={dbname} user={user} password={password}"
 
 

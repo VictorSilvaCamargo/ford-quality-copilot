@@ -1,11 +1,11 @@
-# Ford Quality Copilot
+# Quality Copilot
 
-Copiloto de Inteligência Artificial (RAG + Analytics) para detecção precoce de falhas recorrentes em campo e estimativa de custo evitável em veículos **Ford** e **Lincoln**, construído sobre dados públicos oficiais da **NHTSA**.
+Copiloto de Inteligência Artificial (RAG + Analytics) para detecção precoce de falhas recorrentes em campo e estimativa de custo evitável em veículos automotivos, construído sobre dados públicos oficiais da **NHTSA**.
 
 > [!IMPORTANT]
 > **Aviso sobre Dados e Premissas de Custo**
 > Todos os registros utilizados neste projeto são **dados públicos oficiais da NHTSA** (*National Highway Traffic Safety Administration* — reclamações de consumidores, recalls, investigações de segurança e boletins de serviço técnico/TSBs).
-> As **premissas de custo** adotadas na modelagem financeira são **hipóteses analíticas declaradas e auditáveis** para fins de estudo de engenharia e portfólio, **não** representando dados internos, confidenciais ou reais da Ford Motor Company.
+> As **premissas de custo** adotadas na modelagem financeira são **hipóteses analíticas declaradas e auditáveis** para fins de estudo de engenharia e portfólio, **não** representando dados internos, confidenciais ou reais de nenhuma montadora.
 
 ---
 
@@ -14,19 +14,19 @@ Copiloto de Inteligência Artificial (RAG + Analytics) para detecção precoce d
 Falhas emergentes de qualidade e confiabilidade automotiva costumam surgir de maneira pulverizada em milhares de relatos textuais não estruturados (reclamações de proprietários e boletins técnicos) meses antes de se consolidarem em campanhas de recall ou picos severos de custo de garantia. A triagem puramente manual dificulta:
 
 - agrupar descrições distintas que descrevem o mesmo modo de falha físico;
-- detectar precocemente desvios de volume por modelo, ano-modelo e subsistema;
+- detectar precocemente desvios de volume por fabricante, modelo, ano-modelo e subsistema;
 - priorizar investigações de engenharia com base no risco de segurança e no impacto financeiro evitável.
 
 ## 2. Hipótese
 
-Se integrarmos os dados públicos da NHTSA (Ford e Lincoln) em um banco relacional e vetorial (**PostgreSQL + pgvector**), aplicarmos *embeddings* e clusterização semântica sobre as narrativas de falha, monitorarmos anomalias temporais e acoplarmos um **agente RAG** a um modelo explícito de custo evitável, será possível identificar padrões críticos com antecedência, recuperar evidências rastreáveis e apoiar decisões de priorização de qualidade com justificativa quantitativa.
+Se integrarmos os dados públicos da NHTSA em um banco relacional e vetorial (**PostgreSQL + pgvector**), aplicarmos *embeddings* e clusterização semântica sobre as narrativas de falha, monitorarmos anomalias temporais e acoplarmos um **agente RAG** a um modelo explícito de custo evitável, será possível identificar padrões críticos com antecedência, recuperar evidências rastreáveis e apoiar decisões de priorização de qualidade com justificativa quantitativa.
 
 ## 3. Arquitetura Planejada
 
 Fluxo ponta a ponta planejado para o sistema (`ingestão → banco → embeddings/clusters → alertas → agente → API/UI`):
 
 ```text
-[Dados Públicos NHTSA: Reclamações, Recalls, Investigações e TSBs (Ford / Lincoln)]
+[Dados Públicos NHTSA: Reclamações, Recalls, Investigações e TSBs]
         │
         ▼
 1. Ingestão (src/ingest)
@@ -67,7 +67,7 @@ Fluxo ponta a ponta planejado para o sistema (`ingestão → banco → embedding
 ## 5. Estrutura de Pastas
 
 ```text
-ford-quality-copilot/
+quality-copilot/
 ├── app/                        # Interface analítica (Streamlit - próximas etapas)
 ├── data/
 │   ├── raw/                    # Dados brutos baixados da NHTSA (ignorados no Git)
@@ -135,7 +135,7 @@ Caso o utilitário `make` não esteja instalado no Windows, execute diretamente 
 ## 7. Roadmap — Etapas do Projeto
 
 - [ ] 🔄 **Etapa 1 — Fundação *(Em andamento)***: Repositório, estrutura modular, ambiente Python com `uv`, `ruff` + `pre-commit`, PostgreSQL + `pgvector` via Docker Compose, teste de fumaça e integração contínua (GitHub Actions).
-- [ ] **Etapa 2 — Ingestão de Dados NHTSA**: Coleta automatizada, validação de esquemas e persistência de reclamações, recalls, investigações e TSBs filtrados para Ford e Lincoln.
+- [ ] **Etapa 2 — Ingestão de Dados NHTSA**: Coleta automatizada, validação de esquemas e persistência de reclamações, recalls, investigações e TSBs filtrados por fabricante e modelo.
 - [ ] **Etapa 3 — Análise Exploratória e Qualidade de Dados**: Perfilamento das bases por linha de veículo, ano-modelo, componente e indicadores críticos de segurança.
 - [ ] **Etapa 4 — Embeddings e Clusterização de Falhas**: Vetorização semântica dos relatos no `pgvector` e identificação de grupos de falhas recorrentes.
 - [ ] **Etapa 5 — Detecção de Tendências e Alertas**: Monitoramento temporal de anomalias e priorização de sinais precoces.

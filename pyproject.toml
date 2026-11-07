@@ -1,7 +1,7 @@
 [project]
-name = "ford-quality-copilot"
+name = "quality-copilot"
 version = "0.1.0"
-description = "Agente RAG para detecção de falhas recorrentes e estimativa de custo evitável em veículos Ford e Lincoln a partir de dados públicos da NHTSA."
+description = "Agente RAG para detecção de falhas recorrentes e estimativa de custo evitável em veículos a partir de dados públicos da NHTSA."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
