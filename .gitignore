@@ -53,7 +53,7 @@ cover/
 .env
 .env.*
 !.env.example
-.venv
+.venv/
 env/
 venv/
 ENV/
@@ -61,7 +61,7 @@ env.bak/
 venv.bak/
 
 # Jupyter Notebook
-.ipynb_checkpoints
+.ipynb_checkpoints/
 
 # mypy / ruff
 .mypy_cache/
@@ -69,7 +69,16 @@ venv.bak/
 dmypy.json
 .ruff_cache/
 
-# IDEs
+# Project data (ignore raw/ and processed/ contents, keep folder structure)
+data/*
+!data/raw/
+data/raw/*
+!data/raw/.gitkeep
+!data/processed/
+data/processed/*
+!data/processed/.gitkeep
+
+# IDEs & OS
 .vscode/
 .idea/
 *.swp

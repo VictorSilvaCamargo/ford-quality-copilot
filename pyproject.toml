@@ -1,0 +1,51 @@
+[project]
+name = "quality-copilot"
+version = "0.1.0"
+description = "Agente RAG para detecção de falhas recorrentes e estimativa de custo evitável em veículos a partir de dados públicos da NHTSA."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "Victor Camargo" },
+]
+dependencies = [
+    "pandas>=2.2.0",
+    "psycopg[binary]>=3.2.0",
+    "pyarrow>=17.0.0",
+    "python-dotenv>=1.0.1",
+    "requests>=2.32.0",
+    "sqlalchemy>=2.0.30",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.0.0",
+    "pytest>=8.3.0",
+    "ruff>=0.9.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-ra -q"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "SIM", # flake8-simplify
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
